@@ -5,7 +5,7 @@ The Bandit wargame is aimed at absolute beginners. It will teach the basics need
 
 **The basic idea for the wargame is that we need to obtain the password for the next level from the current logged in user. To obtain the password we need to perform some linux commands on the Virtual Machine. The level of difficulty rises as we move to higher the levels**
 
-Lets start with the cracking the passwords!!
+Lets start with cracking the passwords!!
 
 ---
 ## Levels
