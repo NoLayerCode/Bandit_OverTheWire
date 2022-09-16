@@ -84,7 +84,7 @@ Now we need to login using the password we got in last level and following detai
 	user: bandit1
 	password: XXXXXXXXXXX(the one you got in last level)
 ```
-The - character creates missuderstaning with **stdin/stdout** i.e. dev/stdin or dev/stdout. Thus, to open the files starting with - character we need to follow below approch. Instead of using `cat ./-` we can also use `cat < -`.
+The - character creates missuderstaning with **stdin/stdout** i.e. dev/stdin or dev/stdout. Thus, to open the files starting with [special characters](https://tldp.org/LDP/abs/html/special-chars.html) we need to follow below approch. Instead of using `cat ./-` we can also use `cat < -`.
 
 ```
 	bandit0@bandit:~ cat ./-
