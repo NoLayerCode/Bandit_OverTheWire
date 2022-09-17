@@ -93,6 +93,7 @@ The - character creates missuderstaning with **stdin/stdout** i.e. dev/stdin or 
 	XXXXXXXXXXXXXXXX
 ```
 Got the password!
+
 ---
 
 ## Bandit2 -> bandit3
