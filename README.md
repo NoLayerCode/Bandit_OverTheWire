@@ -27,23 +27,23 @@ To connect to the server we need to use **SSH** command which helps us to connec
 You can find more information about SSH command [here](https://man7.org/linux/man-pages/man1/ssh.1.html).
 
 ```
-    ssh user@dns/ip -p port
+	ssh user@dns/ip -p port
 ```
 
 This is basic syntax for ssh command. Using the following configuration data we can login to the server
 
 ```
-    User: bandit0
-    host: bandit.labs.overthewire.org
-    password: bandit0
-    port: 2220
+	User: bandit0
+	host: bandit.labs.overthewire.org
+	password: bandit0
+	port: 2220
 ```
 
 ```
-    $ ssh bandit0@bandit.labs.overthewire.org -p 2220
-    This is a OverTheWire game server. More information on http://www.overthewire.org/wargames
+	$ ssh bandit0@bandit.labs.overthewire.org -p 2220
+	This is a OverTheWire game server. More information on http://www.overthewire.org/wargames
 
-    bandit0@bandit.labs.overthewire.org's password: bandit0
+	bandit0@bandit.labs.overthewire.org's password: bandit0
 ```
 
 Using the above command we are able to login to the server. Now we need to crack the command for next level in Bandit1 level
@@ -58,15 +58,15 @@ Once logged in to the server we need to find the **readme** file to find the pas
 We can use the **[ls](https://en.wikipedia.org/wiki/Ls)** linux command to get the list of all files and directories of the current directory.
 
 ```
-    bandit0@bandit:~$ ls
-    readme
+	bandit0@bandit:~$ ls
+	readme
 ```
 
 Now we need to display the content of the file. For that we can use **[cat](<https://en.wikipedia.org/wiki/Cat_(Unix)>)** command.
 
 ```
-    bandit0@bandit:~ cat readme
-    XXXXXXXXXXXXXXXX
+	bandit0@bandit:~ cat readme
+	XXXXXXXXXXXXXXXX
 ```
 
 Got the password for Level2.
@@ -88,8 +88,22 @@ The - character creates missuderstaning with **stdin/stdout** i.e. dev/stdin or 
 
 ```
 	bandit0@bandit:~ cat ./-
-    XXXXXXXXXXXXXXXX
+	XXXXXXXXXXXXXXXX
 ```
 Got the password!
+---
 
+## Bandit2 -> bandit3
 
+> **Target:** The password for the next level is stored in a file called spaces in this filename located in the home directory
+
+First we will login using **ssh** command.
+To access the files with spaces in the filename, we need to use the **\\** escape character as shown below
+
+for more information click [here](https://linuxhint.com/reference-filename-with-spaces-linux/).
+
+```
+	bandit0@bandit:~ cat spaces\ in\ this\ filename
+	XXXXXXXXXXXXXXXX
+```
+Got the password.
