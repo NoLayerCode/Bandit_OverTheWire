@@ -16,6 +16,7 @@ Lets start with cracking the passwords!!
 - [Bandit0->Bandit1](#bandit0---bandit1)
 - [Bandit1->Bandit2](#bandit1---bandit2)
 - [Bandit2->Bandit3](#bandit2---bandit3)
+- [Bandit3->Bandit4](#bandit3---bandit4)
 
 ---
 
@@ -51,6 +52,7 @@ This is basic syntax for ssh command. Using the following configuration data we 
 Using the above command we are able to login to the server. Now we need to crack the command for next level in Bandit1 level
 
 ---
+
 ## Bandit0 -> Bandit1
 
 > **Target:** The password for the next level is stored in a file called readme located in the home directory. Use this password to log into bandit1 using SSH. Whenever you find a password for a level, use SSH (on port 2220) to log into that level and continue the game.
@@ -86,12 +88,14 @@ Now we need to login using the password we got in last level and following detai
 	user: bandit1
 	password: XXXXXXXXXXX(the one you got in last level)
 ```
+
 The - character creates missuderstaning with **stdin/stdout** i.e. dev/stdin or dev/stdout. Thus, to open the files starting with [special characters](https://tldp.org/LDP/abs/html/special-chars.html) we need to follow below approch. Instead of using `cat ./-` we can also use `cat < -`.
 
 ```
-	bandit0@bandit:~ cat ./-
+	bandit1@bandit:~ cat ./-
 	XXXXXXXXXXXXXXXX
 ```
+
 Got the password!
 
 ---
@@ -106,7 +110,28 @@ To access the files with spaces in the filename, we need to use the **\\** escap
 for more information click [here](https://linuxhint.com/reference-filename-with-spaces-linux/).
 
 ```
-	bandit0@bandit:~ cat spaces\ in\ this\ filename
+	bandit2@bandit:~ cat spaces\ in\ this\ filename
 	XXXXXXXXXXXXXXXX
 ```
+
 Got the password.
+
+## Bandit3 -> Bandit4
+
+> **Target:** The password for the next level is stored in a hidden file in the inhere directory.
+
+The **cd** command is used to change the directory.The hidden file can be displayed using **ls -la or ls -a** command, and as shown in the code. We can use **.<file_name>** as prefix to display the content. The '.' indicated that the file is hidden in
+the directory.
+
+```
+	bandit3@bandit:~ cd inhere
+	bandit3@bandit:~ ls -la
+	total 12
+	******* bandit4 bandi3 ** *** *** .hidden
+	bandit3@bandit:~ cat .hidden
+	XXXXXXXXXXXXXXXXX
+```
+
+We got password of next level.
+
+---
