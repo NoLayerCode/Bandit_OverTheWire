@@ -140,13 +140,13 @@ We got password of next level.
 ## Bandit4 -> Bandit5
 
 > **Target:** The password for the next level is stored in the only human-readable file in the inhere directory.
-
-Tip: if your terminal is messed up, try the “reset” command.
+>
+> Tip: if your terminal is messed up, try the “reset” command.
 
 To print the file starting with **'-'** , we need to add **'./'** as prefix of the file name.
 But doing this is quite draggy and worn-out process for every file.
 
-Instead of that we can use **[file](https://man7.org/linux/man-pages/man1/find.1.html)** command to find the filetype of the files.
+Instead of that we can use **[file](https://man7.org/linux/man-pages/man1/file.1.html)** command to find the filetype of the files.
 
 ```
 	bandit4@bandit:~ cd inhere
@@ -162,6 +162,7 @@ Instead of that we can use **[file](https://man7.org/linux/man-pages/man1/find.1
 	-file08: data
 	-file09: data
 ```
+
 Now we know that only **-file07** is human-readable. So, we just need to display its content and we will get the password for the next level.
 
 ```
@@ -170,5 +171,32 @@ Now we know that only **-file07** is human-readable. So, we just need to display
 ```
 
 Got the password!
+
+---
+
+## Bandit5 -> Bandit6
+
+> **Target:** The password for the next level is stored in a file somewhere under the inhere directory and has
+> all of the following properties:
+>
+> - human-readable
+> - 1033 bytes in size
+> - not executable
+
+The **[find](https://man7.org/linux/man-pages/man1/find.1.html)** command let us search the files with specific size constraint.
+
+The _-size_ flag is used to specify the required filesize, and in **1033c** the _c_ denotes that the size is in _bytes_.
+
+```
+	bandit5@bandit:~ cd inhere
+	bandit5@bandit:~ find . -size 1033c
+	./mybehere07/.file02
+	bandit5@bandit:~ cat ./mybehere07/.file02
+	XXXXXXXXXXXXXXXXX
+```
+
+> Note: the **.** in find command indicates to search the current directory.s
+
+Got the password.
 
 ---
