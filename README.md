@@ -17,6 +17,7 @@ Lets start with cracking the passwords!!
 - [Bandit1->Bandit2](#bandit1---bandit2)
 - [Bandit2->Bandit3](#bandit2---bandit3)
 - [Bandit3->Bandit4](#bandit3---bandit4)
+- [Bandit4->Bandit5](#bandit4---bandit5)
 
 ---
 
@@ -133,5 +134,41 @@ the directory.
 ```
 
 We got password of next level.
+
+---
+
+## Bandit4 -> Bandit5
+
+> **Target:** The password for the next level is stored in the only human-readable file in the inhere directory.
+
+Tip: if your terminal is messed up, try the “reset” command.
+
+To print the file starting with **'-'** , we need to add **'./'** as prefix of the file name.
+But doing this process we need to read all files in inhere folder.
+
+Instead of that we can use **[file](https://man7.org/linux/man-pages/man1/find.1.html)** command to find the filetype of the files.
+
+```
+	bandit4@bandit:~ cd inhere
+	bandit4@bandit:~ file *
+	-file00: data
+	-file01: data
+	-file02: data
+	-file03: data
+	-file04: data
+	-file05: data
+	-file06: data
+	-file07: ASCII text
+	-file08: data
+	-file09: data
+```
+Now we know that only **-file07** is human-readable. So, we just need to display its content and we will get the password for the next level.
+
+```
+	bandit4@bandit:~ cat ./-file07
+	XXXXXXXXXXXXXXXXX
+```
+
+Got the password!
 
 ---
