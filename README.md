@@ -144,7 +144,7 @@ We got password of next level.
 Tip: if your terminal is messed up, try the “reset” command.
 
 To print the file starting with **'-'** , we need to add **'./'** as prefix of the file name.
-But doing this process we need to read all files in inhere folder.
+But doing this is quite draggy and worn-out process for every file.
 
 Instead of that we can use **[file](https://man7.org/linux/man-pages/man1/find.1.html)** command to find the filetype of the files.
 
