@@ -215,10 +215,10 @@ The **[find](https://man7.org/linux/man-pages/man1/find.1.html)** command let us
 The **-user** and **-group** tags will help us to add constraints to search the required file.
 
 ```
-	bandit5@bandit:~ cd /
-	bandit5@bandit:~ find -user bandit7 -group bandit6 -size 33c 2>/dev/null
+	bandit6@bandit:~ cd /
+	bandit6@bandit:~ find -user bandit7 -group bandit6 -size 33c 2>/dev/null
 	./var/lib/dpkg/info/bandit7.password
-	bandit5@bandit:~ cat ./var/lib/dpkg/info/bandit7.password
+	bandit6@bandit:~ cat ./var/lib/dpkg/info/bandit7.password
 	XXXXXXXXXXXXXXXXX
 ```
 
@@ -227,3 +227,43 @@ The **-user** and **-group** tags will help us to add constraints to search the 
 Got the password.
 
 ---
+
+## Bandit7 -> Bandit8
+
+> **Target:** The password for the next level is stored in the file data.txt next to the word millionth
+
+A **[pipe](https://linuxhint.com/what-is-pipe-in-linux/)** **'|'** is a form of redirection of data which helps to combine multiple commands.
+
+The output of the 1st command is the input for the 2nd command. The **[grep](https://man7.org/linux/man-pages/man1/grep.1.html)** command is used to match a
+regular expression or strings.
+
+```
+	bandit7@bandit:~ ls
+	data.txt
+	bandit7@bandit:~ cat data.txt | grep millionth
+	XXXXXXXXXXXXXXXXX
+```
+
+Got the password
+
+---
+
+<!-- ## Bandit8 -> Bandit9
+
+> **Target:** The password for the next level is stored in the file data.txt next to the word millionth
+
+A **[pipe](https://linuxhint.com/what-is-pipe-in-linux/)** **'|'** is a form of redirection of data which helps to combine multiple commands.
+
+The output of the 1st command is the input for the 2nd command. The **[grep](https://man7.org/linux/man-pages/man1/grep.1.html)** command is used to match a
+regular expression or strings.
+
+```
+	bandit7@bandit:~ ls
+	data.txt
+	bandit7@bandit:~ cat data.txt | grep millionth
+	XXXXXXXXXXXXXXXXX
+```
+
+Got the password
+
+--- -->
