@@ -234,8 +234,7 @@ Got the password.
 
 A **[pipe](https://linuxhint.com/what-is-pipe-in-linux/)** **'|'** is a form of redirection of data which helps to combine multiple commands.
 
-The output of the 1st command is the input for the 2nd command. The **[grep](https://man7.org/linux/man-pages/man1/grep.1.html)** command is used to match a
-regular expression or strings.
+The output of the 1st command is the input for the 2nd command. The **[grep](https://man7.org/linux/man-pages/man1/grep.1.html)** command is used to match a regular expression or strings.
 
 ```
 	bandit7@bandit:~ ls
@@ -248,22 +247,21 @@ Got the password
 
 ---
 
-<!-- ## Bandit8 -> Bandit9
+## Bandit8 -> Bandit9
 
-> **Target:** The password for the next level is stored in the file data.txt next to the word millionth
+> **Target:** The password for the next level is stored in the file data.txt and is the only line of text that occurs
+> only once
 
-A **[pipe](https://linuxhint.com/what-is-pipe-in-linux/)** **'|'** is a form of redirection of data which helps to combine multiple commands.
-
-The output of the 1st command is the input for the 2nd command. The **[grep](https://man7.org/linux/man-pages/man1/grep.1.html)** command is used to match a
-regular expression or strings.
+the **[uniq](https://man7.org/linux/man-pages/man1/uniq.1.html)** **-u** gives us the only unique values from the file, and the **[sort](https://linuxhint.com/sort-command-in-linux-with-examples/)** command is used to sort
+the data of the file.
 
 ```
-	bandit7@bandit:~ ls
+	bandit8@bandit:~ ls
 	data.txt
-	bandit7@bandit:~ cat data.txt | grep millionth
+	bandit8@bandit:~ cat data.txt | sort | uniq -u
 	XXXXXXXXXXXXXXXXX
 ```
 
 Got the password
 
---- -->
+---
