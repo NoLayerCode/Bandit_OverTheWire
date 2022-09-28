@@ -20,6 +20,8 @@ Lets start with cracking the passwords!!
 - [Bandit4->Bandit5](#bandit4---bandit5)
 - [Bandit5->Bandit6](#bandit5---bandit6)
 - [Bandit6->Bandit7](#bandit6---bandit7)
+- [Bandit7->Bandit8](#bandit7---bandit8)
+- [Bandit8->Bandit9](#bandit8---bandit9)
 
 ---
 
