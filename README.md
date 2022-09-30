@@ -267,3 +267,30 @@ the data of the file.
 Got the password
 
 ---
+
+## Bandit9 -> Bandit10
+
+> **Target:** The password for the next level is stored in the file data.txt in one of the few human-readable
+> strings, preceded by several ‘=’ characters.
+
+to search the lines with multiple ‘=’ character, we just need to search the '=' using **[grep](https://man7.org/linux/man-pages/man1/grep.1.html)** command.
+
+```
+	bandit9@bandit:~ ls
+	data.txt
+	bandit9@bandit:~ cat data.txt | grep =
+	========== the*2i"4
+	=:G e
+	========== password
+	<I=zsGi
+	Z)========== is
+	A=|t&E
+	Zdb=
+	c^ LAh=3G
+	*SF=s
+	&========== XXXXXXXXXXXXXXXXXXXXXX
+	S=A.H&^
+```
+
+Got the password!
+---
