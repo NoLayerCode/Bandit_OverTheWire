@@ -292,6 +292,6 @@ to search the lines with multiple ‘=’ character, we just need to search the 
 	&========== XXXXXXXXXXXXXXXXXXXXXX
 	S=A.H&^
 ```
-
 Got the password!
+
 ---
