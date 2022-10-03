@@ -295,3 +295,23 @@ to search the lines with multiple ‘=’ character, we just need to search the 
 Got the password!
 
 ---
+
+## Bandit10 -> Bandit11
+
+> **Target:** The password for the next level is stored in the file data.txt, which contains base64 encoded data 
+
+The **[file](https://www.man7.org/linux/man-pages/man1/file.1.html)** command gives the file-type details of the particular file. And, the **[base64](https://linux.die.net/man/1/base64)** command can be used to decode the content of the file using **-d** tag
+
+You can find more information about base64 command **[here](https://en.wikipedia.org/wiki/Base64)**
+
+```
+	bandit10@bandit:~ ls
+	data.txt
+	bandit10@bandit:~ file data.txt
+	data.txt: ASCII text
+	bandit10@bandit:~ cat data.txt | base64 -d
+	The password is XXXXXXXXXXXXXXXXXX
+```
+Got the password!
+
+---
