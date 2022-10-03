@@ -303,7 +303,7 @@ Got the password!
 
 The **[file](https://www.man7.org/linux/man-pages/man1/file.1.html)** command gives the file-type details of the particular file. And, the **[base64](https://linux.die.net/man/1/base64)** command can be used to decode the content of the file using **-d** tag
 
-You can find more information about base64 command **[here](https://en.wikipedia.org/wiki/Base64)**
+You can find more information about base64 **[here](https://en.wikipedia.org/wiki/Base64)**
 
 ```
 	bandit10@bandit:~ ls
