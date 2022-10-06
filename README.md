@@ -24,6 +24,7 @@ Lets start with cracking the passwords!!
 - [Bandit8->Bandit9](#bandit8---bandit9)
 - [Bandit9->Bandit10](#bandit9---bandit10)
 - [Bandit10->Bandit11](#bandit9---bandit10)
+- [Bandit11->Bandit12](#bandit11---bandit12)
 
 ---
 
@@ -311,6 +312,23 @@ You can find more information about base64 **[here](https://en.wikipedia.org/wik
 	bandit10@bandit:~ file data.txt
 	data.txt: ASCII text
 	bandit10@bandit:~ cat data.txt | base64 -d
+	The password is XXXXXXXXXXXXXXXXXX
+```
+Got the password!
+
+---
+
+## Bandit11 -> Bandit12
+
+> **Target:** The password for the next level is stored in the file data.txt, where all lowercase (a-z) and uppercase (A-Z) letters have been rotated by 13 positions
+
+The rotation of the alphabets by 13 positions indicates that the **[rot13 encryption](https://en.wikipedia.org/wiki/ROT13)** is done.
+To decrypt the data we need to use tr command with the particular alphabet sets as **N-ZA-Mn-za-m** indicating that the alphabets starts from n to z and then a to m for both upper and lower case.
+
+```
+	bandit10@bandit:~ ls
+	data.txt
+	bandit10@bandit:~ cat data.txt | tr 'A-Za-z' 'N-ZA-Mn-za-m'
 	The password is XXXXXXXXXXXXXXXXXX
 ```
 Got the password!
