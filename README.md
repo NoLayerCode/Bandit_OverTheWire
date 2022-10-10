@@ -396,7 +396,7 @@ Then finally we will get a text file with password stored in it.
 	data5.tar  data6.tar  data8.bin  data8.tar  data.txt
 
 	bandit12@bandit:/tmp/secttp$ file data8.bin
-	data8.bin: gzip compressed data, was "data9.bin", last modified: Tue Oct 16 12:00:23 2018, max compression, from					Unixbandit12@bandit:/tmp/secttp$ mv data8.bin data9.gz
+	data8.bin: gzip compressed data, was "data9.bin", last modified: Tue Oct 16 12:00:23 2018, max compression, from Unixbandit12@bandit:/tmp/secttp$ mv data8.bin data9.gz
 	bandit12@bandit:/tmp/secttp$ gzip -d data9.gz
 	bandit12@bandit:/tmp/secttp$ ls
 	data5.tar  data6.tar  data8.tar  data9  data.txt
