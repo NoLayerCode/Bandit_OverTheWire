@@ -12,19 +12,19 @@ Lets start with cracking the passwords!!
 
 ## Levels
 
-- [Bandit0](#bandit0)
-- [Bandit0->Bandit1](#bandit0---bandit1)
-- [Bandit1->Bandit2](#bandit1---bandit2)
-- [Bandit2->Bandit3](#bandit2---bandit3)
-- [Bandit3->Bandit4](#bandit3---bandit4)
-- [Bandit4->Bandit5](#bandit4---bandit5)
-- [Bandit5->Bandit6](#bandit5---bandit6)
-- [Bandit6->Bandit7](#bandit6---bandit7)
-- [Bandit7->Bandit8](#bandit7---bandit8)
-- [Bandit8->Bandit9](#bandit8---bandit9)
-- [Bandit9->Bandit10](#bandit9---bandit10)
-- [Bandit10->Bandit11](#bandit9---bandit10)
-- [Bandit11->Bandit12](#bandit11---bandit12)
+-   [Bandit0](#bandit0)
+-   [Bandit0->Bandit1](#bandit0---bandit1)
+-   [Bandit1->Bandit2](#bandit1---bandit2)
+-   [Bandit2->Bandit3](#bandit2---bandit3)
+-   [Bandit3->Bandit4](#bandit3---bandit4)
+-   [Bandit4->Bandit5](#bandit4---bandit5)
+-   [Bandit5->Bandit6](#bandit5---bandit6)
+-   [Bandit6->Bandit7](#bandit6---bandit7)
+-   [Bandit7->Bandit8](#bandit7---bandit8)
+-   [Bandit8->Bandit9](#bandit8---bandit9)
+-   [Bandit9->Bandit10](#bandit9---bandit10)
+-   [Bandit10->Bandit11](#bandit9---bandit10)
+-   [Bandit11->Bandit12](#bandit11---bandit12)
 
 ---
 
@@ -186,9 +186,9 @@ Got the password!
 > **Target:** The password for the next level is stored in a file somewhere under the inhere directory and has
 > all of the following properties:
 >
-> - human-readable
-> - 1033 bytes in size
-> - not executable
+> -   human-readable
+> -   1033 bytes in size
+> -   not executable
 
 The **[find](https://man7.org/linux/man-pages/man1/find.1.html)** command let us search the files with specific size constraint.
 
@@ -212,9 +212,9 @@ Got the password.
 
 > **Target:** The password for the next level is stored somewhere on the server and has all of the following properties:
 >
-> - owned by user bandit7
-> - owned by group bandit6
-> - 33 bytes in size
+> -   owned by user bandit7
+> -   owned by group bandit6
+> -   33 bytes in size
 
 The **[find](https://man7.org/linux/man-pages/man1/find.1.html)** command let us search the files with specific size constraint.
 The **-user** and **-group** tags will help us to add constraints to search the required file.
@@ -294,13 +294,14 @@ to search the lines with multiple ‘=’ character, we just need to search the 
 	&========== XXXXXXXXXXXXXXXXXXXXXX
 	S=A.H&^
 ```
+
 Got the password!
 
 ---
 
 ## Bandit10 -> Bandit11
 
-> **Target:** The password for the next level is stored in the file data.txt, which contains base64 encoded data 
+> **Target:** The password for the next level is stored in the file data.txt, which contains base64 encoded data
 
 The **[file](https://www.man7.org/linux/man-pages/man1/file.1.html)** command gives the file-type details of the particular file. And, the **[base64](https://linux.die.net/man/1/base64)** command can be used to decode the content of the file using **-d** tag
 
@@ -314,6 +315,7 @@ You can find more information about base64 **[here](https://en.wikipedia.org/wik
 	bandit10@bandit:~ cat data.txt | base64 -d
 	The password is XXXXXXXXXXXXXXXXXX
 ```
+
 Got the password!
 
 ---
@@ -331,6 +333,79 @@ To decrypt the data we need to use tr command with the particular alphabet sets 
 	bandit10@bandit:~ cat data.txt | tr 'A-Za-z' 'N-ZA-Mn-za-m'
 	The password is XXXXXXXXXXXXXXXXXX
 ```
+
+Got the password!
+
+---
+
+## Bandit12 -> Bandit13
+
+> **Target:** The password for the next level is stored in the file data.txt, which is a hexdump of a file that has been repeatedly compressed. For this level it may be useful to create a directory under /tmp in which you can work using mkdir. For example: mkdir /tmp/myname123. Then copy the datafile using cp, and rename it using mv (read the manpages!)
+
+The data.txt file is encoded in hex. To decode the file we need to create a backup folder in **/tmp/\<folder name>**. The mkdir helps us to create the desired folder. The cp command helps us to copy the file to the newly created folder.
+
+Then, using **cd** we can go to the temporary folder. The **xxd -r** command is used to decode the data.txt into file data_hex.
+
+The file is encrypted in multilevel with gzip, tar and bzip2, to decode the file we need to follow repeated
+commands as per the file type.
+
+```
+- gzip -d \<file_name>.gz
+- tar xvf \<file_name>.tar
+- bzip2 -d \<file_name>.bz2
+```
+
+Then finally we will get a text file with password stored in it.
+
+```
+	bandit12@bandit:/tmp/secttp$ cat data.txt | xxd -r > data
+	bandit12@bandit:/tmp/secttp$ file data
+	data: gzip compressed data, was "data2.bin", last modified: Tue Oct 16 12:00:23 2018, max compression, from Unix
+	bandit12@bandit:/tmp/secttp$
+```
+
+```
+	bandit12@bandit:/tmp/secttp$ mv data3 data4.gz
+	bandit12@bandit:/tmp/secttp$ gzip -d data4.gz
+	bandit12@bandit:/tmp/secttp$ ls
+	data4  data.txt
+
+	bandit12@bandit:/tmp/secttp$ file data4
+	data4: POSIX tar archive (GNU)bandit12@bandit:/tmp/secttp$ mv data4 data5.tar
+	bandit12@bandit:/tmp/secttp$ tar -xf data5.tar
+	bandit12@bandit:/tmp/secttp$ ls
+	data5.bin  data5.tar  data.txt
+
+	bandit12@bandit:/tmp/secttp$ file data5.bin
+	data5.bin: POSIX tar archive (GNU)bandit12@bandit:/tmp/secttp$ mv data5.bin data6.tar
+	bandit12@bandit:/tmp/secttp$ tar -xf data6.tar
+	bandit12@bandit:/tmp/secttp$ ls
+	data5.tar  data6.bin  data6.tar  data.txt
+
+	bandit12@bandit:/tmp/secttp$ file data6.bin
+	data6.bin: bzip2 compressed data, block size = 900kbandit12@bandit:/tmp/secttp$ mv data6.bin data7.bz
+	bandit12@bandit:/tmp/secttp$ bzip2 -d data7.bz
+	bandit12@bandit:/tmp/secttp$ ls
+	data5.tar  data6.tar  data7  data.txt
+
+	bandit12@bandit:/tmp/secttp$ file data7
+	data7: POSIX tar archive (GNU)bandit12@bandit:/tmp/secttp$ mv data7 data8.tar
+	bandit12@bandit:/tmp/secttp$ tar -xf data8.tar
+	bandit12@bandit:/tmp/secttp$ ls
+	data5.tar  data6.tar  data8.bin  data8.tar  data.txt
+
+	bandit12@bandit:/tmp/secttp$ file data8.bin
+	data8.bin: gzip compressed data, was "data9.bin", last modified: Tue Oct 16 12:00:23 2018, max compression, from					Unixbandit12@bandit:/tmp/secttp$ mv data8.bin data9.gz
+	bandit12@bandit:/tmp/secttp$ gzip -d data9.gz
+	bandit12@bandit:/tmp/secttp$ ls
+	data5.tar  data6.tar  data8.tar  data9  data.txt
+
+	bandit12@bandit:/tmp/secttp$ file data9
+	data9: ASCII text
+	bandit12@bandit: cat data9
+	XXXXXXXXXXXXXXXXXX
+```
+
 Got the password!
 
 ---
