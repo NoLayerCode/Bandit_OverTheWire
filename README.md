@@ -26,6 +26,7 @@ Lets start with cracking the passwords!!
 -   [Bandit10->Bandit11](#bandit9---bandit10)
 -   [Bandit11->Bandit12](#bandit11---bandit12)
 -   [Bandit12->Bandit13](#bandit12---bandit13)
+-   [Bandit13->Bandit14](#bandit13---bandit14)
 
 ---
 
