@@ -410,3 +410,26 @@ Then finally we will get a text file with password stored in it.
 Got the password!
 
 ---
+
+## Bandit13 -> Bandit14
+
+> **Target:** The password for the next level is stored in /etc/bandit_pass/bandit14 and can only be read by
+> user bandit14. For this level, you don’t get the next password, but you get a private SSH key that can be
+> used to log into the next level. Note: localhost is a hostname that refers to the machine you are working
+> on
+
+To access the bandit14 user we need to use the private key using the **ssh input command**. The **'-i' flag** takes the private key file as the input for the ssh connection.
+
+```
+	bandit13@bandit:~$ ls
+	sshkey.private
+	bandit13@bandit:~$ ssh bandit14@localhost -i sshkey.private
+	bandit14@bandit:~$ whoami
+	bandit14
+	bandit14@bandit:~$ cat /etc/bandit_pass/bandit14
+	XXXXXXXXXXXXXXXXXXXXXX
+```
+
+Got the password!
+
+---
